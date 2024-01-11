@@ -1,7 +1,7 @@
 import os
 
 from setuptools import setup, find_packages
-from process import about
+# from process import about
 from dunamai import Version
 
 version = Version.from_git()
