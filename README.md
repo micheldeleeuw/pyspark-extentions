@@ -1,2 +1,2 @@
 # pyspark-extentions
-Library with extensions to the PySpark dataframe object.
+Library with extensions to the PySpark dataframe object..
