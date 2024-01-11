@@ -20,13 +20,8 @@ setup(
         'wheel>=0.42.0',
         # 'databricks-cli==0.18.0',
         'pyspark==3.4.1',
-        # 'jsonschema==4.20.0',
         'dunamai==1.19.0',
-        # 'luigi==3.0.3',
-        # 'pytz==2023.3.post1',
-        'kafka-python==2.0.2',
-        'croniter==2.0.1',
-        'timedelta==2020.12.3'
+        # 'kafka-python==2.0.2',
     ],
     author=about.__author__,
     author_email=about.__mail__
