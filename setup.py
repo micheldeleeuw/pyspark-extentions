@@ -24,6 +24,6 @@ setup(
         # 'dunamai==1.19.0',
         # 'kafka-python==2.0.2',
     ],
-    author=about.__author__,
-    author_email=about.__mail__
+    # author=about.__author__,
+    # author_email=about.__mail__
 )
