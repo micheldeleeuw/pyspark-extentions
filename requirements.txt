@@ -1,0 +1,20 @@
+# wheel==0.42.0
+# databricks-cli==0.18.0
+pyspark==3.4.1
+# jsonschema==4.20.0
+pytest==7.4.4
+# pytest-timestamper
+# pytest-cov==4.1.0
+# mock==5.1.0
+# tox==4.11.4
+# pytest-tldr==0.2.5
+# dunamai==1.19.0
+# luigi==3.0.3
+# delta-spark==2.4.0
+# pytz==2023.3.post1
+# #./dependencies/datalaketools-1.0.0-py37-none-any.whl
+# ./dependencies/vent_utils-0.0.0+26.a378dd2-py3-none-any.whl
+# kafka-python==2.0.2
+# croniter==2.0.1
+# timedelta==2020.12.3
+# databricks-sdk==0.17.0
