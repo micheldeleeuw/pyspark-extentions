@@ -1,5 +1,6 @@
 import pytest
 import logging
+import os
 
 from pyspark.sql import SparkSession
 
@@ -28,18 +29,29 @@ def spark(tmp_path_factory) -> SparkSession:
 
 
 @pytest.fixture(scope='session')
-def test_set(spark):
-    schema = '''
-        order_id: string,
-        line_id: string,
-        order_date: date,
-        order_timestamp: timestamp,
-        customer_id: string,
-        article_id: string,
-        article_description: string,
-        sales_amount: double,
-        returned_indicator: bool,
-        registration_timestamp: timestamp
-    '''
+def test_set_1(spark):
+    file = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        'fixtures',
+        'test_set_1.csv',
+    )
 
-    return schema
+    return (
+        spark.read.format('csv')
+        .option("timestampFormat", "yyyy-MM-dd HH:mm:ss.SSSSSS")
+        .option('header', 'true')
+        .schema('''
+            order_id string,
+            line_id string,
+            order_date date,
+            order_timestamp timestamp,
+            customer_id string,
+            article_id string,
+            article_description string,
+            sales_amount double,
+            returned_indicator boolean,
+            registration_timestamp timestamp
+        ''')
+        .load(file)
+    )
+

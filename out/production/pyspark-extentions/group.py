@@ -21,10 +21,10 @@ class Group(PysparkExtentionsTools):
 
     def __init__(self, df, *by):
         # check and register some characteristics
+        print(by)
         self.df = df
         self.add_dataframe_properties_to_self(df)
         self.by = self.validate_columns_parameters(by)
-        self.columns_aggregable = [col for col in self.columns if col not in self.by]
         self.pivot_column = None
 
 
@@ -32,7 +32,6 @@ class Group(PysparkExtentionsTools):
         self.pivot_column = column
         self.pivot_prefix = prefix
         self.pivot_sort_by_measure = sort_by_measure
-        self.columns_aggregable = [col for col in self.columns_aggregable if col != self.pivot_column]
 
         return self
 
@@ -67,13 +66,14 @@ class Group(PysparkExtentionsTools):
         # do the actual aggregation
 
         # transform generic parameters to named local variables
-        agg = list(kwargs['agg']) if 'agg' in kwargs.keys() else list(args)
+        agg = kwargs['agg'] if 'agg' in kwargs.keys() else args
         alias = kwargs['alias'] if 'alias' in kwargs.keys() else False
 
-        # default aggregate and scalar to list
-        if isinstance(agg, List) and isinstance(agg[0], List):
-            agg = agg[0]
+        self.columns_aggregable = [
+            col for col in self.columns if col not in self.by and col != self.pivot_column
+        ]
 
+        # default aggregate and scalar to list
         if not agg or agg == []:
             self.agg = [F.count('*').alias('count')]
         elif isinstance(agg, Column):
@@ -83,13 +83,7 @@ class Group(PysparkExtentionsTools):
         else:
             self.agg = agg
 
-        # Force alias when more than one single aggregation function is requested
-        if len(
-                [value for value in agg
-                 if isinstance(value, str) and value in self.single_aggregation_functions()]
-        ) > 1:
-            alias = True
-
+        
         self.alias = alias
         self._build_aggregate()
 
@@ -131,7 +125,7 @@ class Group(PysparkExtentionsTools):
         for i, ag_el in enumerate(self.agg):
 
             # 1. single aggregation function
-            if isinstance(ag_el, str) and ag_el in self.single_aggregation_functions():
+            if isinstance(ag_el, str) and ag_el in self.single_aggregation_function():
                 for j, col in enumerate(self.columns_aggregable):
                     result_expression = None
 
@@ -172,7 +166,7 @@ class Group(PysparkExtentionsTools):
         self.agg = agg
 
 
-    def single_aggregation_functions(self):
+    def single_aggregation_function(self):
         return (
             'max',
             'min',
