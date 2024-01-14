@@ -1,6 +1,8 @@
 import logging
-from typing import List
+from typing import List, Union, Dict
+from typing_extensions import Self
 from pyspark.sql.column import Column
+from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
 
 from .pyspark_extentions_tools import PysparkExtentionsTools
@@ -10,7 +12,7 @@ log = logging.getLogger(__name__)
 class Group(PysparkExtentionsTools):
 
     @staticmethod
-    def group(df, *by):
+    def group(df: DataFrame, *by:List[str]) -> Self:
         return Group(df, *by)
 
             # .pivot(column, prefix='', sort_by_measure=True),
@@ -19,27 +21,33 @@ class Group(PysparkExtentionsTools):
             # .agg(agg=None, alias=False)
 
 
-    def __init__(self, df, *by):
+    def __init__(self, df: DataFrame, *by: List[str]):
         # check and register some characteristics
         self.df = df
         self.add_dataframe_properties_to_self(df)
         self.by = self.validate_columns_parameters(by)
         self.columns_aggregable = [col for col in self.columns if col not in self.by]
         self.pivot_column = None
+        self.totals_by = []
+        self.totals_indicator = False
+        self.keep_group_column = False
 
 
-    def pivot(self, column, prefix='', sort_by_measure=True):
+    def pivot(self, column: str, prefix:str = '') -> Self:
         self.pivot_column = column
         self.pivot_prefix = prefix
-        self.pivot_sort_by_measure = sort_by_measure
         self.columns_aggregable = [col for col in self.columns_aggregable if col != self.pivot_column]
 
         return self
 
 
-    def totalsBy(self, by=None, label='Subtotal', type='sum'):
+    def totalsBy(self, by: List[str] = None, label: str = 'Subtotal',
+                 keep_group_column: bool = False):
         # when by is not specified, we assume by is on first group by
-        if not by and len(self.by) < 2:
+        if isinstance(by, str):
+            by = [by]
+
+        if len(self.by) < 2:
             raise Exception('totalsBy only possible with two or more by columns.')
         elif not by:
             self.totals_by = [self.by[0]]
@@ -47,24 +55,31 @@ class Group(PysparkExtentionsTools):
             self.totals_by = self.validate_columns_parameters(by)
 
         self.totals_by_label = label
-        self.totals_by_type = type
+        self.keep_group_column = keep_group_column
 
         return self
 
 
-    def totals(self, label='Total', type='sum'):
+    def totals(self, label: str = 'Total',
+               keep_group_column: bool = False) -> Self:
         if len(self.by) == 0:
             raise Exception('totals only possible with one or more by columns.')
 
-        self.totals = True
+        self.totals_indicator = True
         self.totals_label = label
-        self.totals_type = type
+        self.keep_group_column = keep_group_column
 
         return self
 
 
-    def agg(self, *args, **kwargs):
-        # do the actual aggregation
+    def agg(self, *args: List[Union[str, Column]], **kwargs: Dict) -> DataFrame:
+        ''' Do the actual aggregation
+        
+        :param args: the aggregation expressions and columns
+        :param kwargs:  holds the alias parameter
+        :return: DataFrame with the aggregation
+        '''
+
 
         # transform generic parameters to named local variables
         agg = list(kwargs['agg']) if 'agg' in kwargs.keys() else list(args)
@@ -75,26 +90,23 @@ class Group(PysparkExtentionsTools):
             agg = agg[0]
 
         if not agg or agg == []:
-            self.agg = [F.count('*').alias('count')]
+            self.agg_exprs = [F.count('*').alias('count')]
         elif isinstance(agg, Column):
-            self.agg = [agg]
+            self.agg_exprs = [agg]
         elif not isinstance(agg, List):
-            self.agg = [agg]
+            self.agg_exprs = [agg]
         else:
-            self.agg = agg
+            self.agg_exprs = agg
 
         # Force alias when more than one single aggregation function is requested
-        if len(
-                [value for value in agg
-                 if isinstance(value, str) and value in self.single_aggregation_functions()]
-        ) > 1:
+        if len([
+            value for value in agg
+            if isinstance(value, str) and value in self.single_aggregation_functions()
+        ]) > 1:
             alias = True
 
         self.alias = alias
         self._build_aggregate()
-
-        from pprint import pprint
-        pprint(vars(self))
 
         if self.pivot_column:
             result = (
@@ -106,14 +118,92 @@ class Group(PysparkExtentionsTools):
         else:
             result = self.df.groupBy(*self.by)
 
-        result = result.agg(*self.agg)
-        # df_agg = df_agg.muNormalizeColumnNames()
-        # df_agg = df_agg.withColumn('_group', F.lit(1))
+        result = result.agg(*self.agg_exprs)
+        result = result.withColumn('_group', F.lit(1))
+        self.result = result
 
-        return result
+        if self.totals_by != []:
+            self._totals_by()
+
+        if self.totals_indicator:
+            self._totals()
+
+        # sort the result
+        self.result =(
+            self.result
+            .orderBy(
+                # grand totals at bottom
+                F.expr('if(_group in (1,2), 1, 2)'),
+                # then each totals by group
+                *self.totals_by,
+                # by totals at bottom of by group
+                '_group',
+                # then sorting within the by group
+                *self.by,
+            )
+        )
+
+        if not self.keep_group_column:
+            self.result = self.result.drop('_group')
+        else:
+            self.result = self.result.withColumn('_seq', F.monotonically_increasing_id())
+
+        return self.result
 
 
-    def _build_aggregate(self):
+    def _totals_by(self):
+        # first column must be able to hold totals label
+        self._first_column_to_string()
+
+        # group the original data, but without by
+        subtotals = Group(self.df, *self.totals_by)
+
+        if self.pivot_column:
+            subtotals = subtotals.pivot(self.pivot_column, self.pivot_prefix)
+
+        subtotals = (
+            subtotals
+            .agg(agg=self.agg_exprs, alias=self.alias)
+            .selectExpr(f'"{self.totals_by_label}" as {[col for col in self.by if col not in self.totals_by][0]}', '*')
+            .withColumn('_group', F.lit(2))
+        )
+
+        self.result = self.result.unionByName(subtotals, allowMissingColumns=True)
+
+
+    def _totals(self):
+        # first column must be able to hold totals label
+        self._first_column_to_string()
+
+        # group the original data, but without by
+        totals = Group(self.df)
+
+        if self.pivot_column:
+            totals = totals.pivot(self.pivot_column, self.pivot_prefix)
+
+        totals = (
+            totals
+            .agg(agg=self.agg_exprs, alias=self.alias)
+            .selectExpr(f'"{self.totals_label}" as {self.by[0]}', '*')
+            .withColumn('_group', F.lit(3))
+        )
+
+        self.result = self.result.unionByName(totals, allowMissingColumns=True)
+
+
+    def _first_column_to_string(self):
+        # (Sub)totals label in column 1 means it must be string
+        result_columns = self.result.columns
+        self.result = (
+            self.result
+            .selectExpr(
+                f'cast(`{result_columns[0]}` as string) as `{result_columns[0]}`',
+                *[f'`{col}`' for col in result_columns[1:]]
+            )
+        )
+
+
+    def _build_aggregate(self) -> None:
         # We (re)build the aggregation expressions.
         # 1. If it is string with a single aggregation function without parameters
         #    then that function is applied to all columns for which that function
@@ -128,7 +218,7 @@ class Group(PysparkExtentionsTools):
         # to sort the columns after their determination.
 
         agg = []
-        for i, ag_el in enumerate(self.agg):
+        for i, ag_el in enumerate(self.agg_exprs):
 
             # 1. single aggregation function
             if isinstance(ag_el, str) and ag_el in self.single_aggregation_functions():
@@ -136,16 +226,16 @@ class Group(PysparkExtentionsTools):
                     result_expression = None
 
                     if col in self.columns_nummeric and ag_el == 'avg_null':
-                        result_expression = f'avg(coalesce({col}, 0))'
+                        result_expression = f'avg(coalesce(`{col}`, 0))'
                     elif ag_el == 'count_distinct':
-                        result_expression = f'count(distinct({col}))'
+                        result_expression = f'count(distinct(`{col}`))'
                     elif ag_el == 'count_null':
-                        result_expression = f'sum(case when {col} is null then 1 else 0 end)'
+                        result_expression = f'sum(case when `{col}` is null then 1 else 0 end)'
                     elif ag_el == 'count_not_null':
-                        result_expression = f'sum(case when {col} is not null then 1 else 0 end)'
+                        result_expression = f'sum(case when `{col}` is not null then 1 else 0 end)'
                     elif col in self.columns_nummeric or ag_el in (
                             'max', 'min', 'count', 'first', 'collect_set', 'collect_list'):
-                        result_expression = f'{ag_el}({col})'
+                        result_expression = f'{ag_el}(`{col}`)'
                     else:
                         # nummeric aggregation on non nummeric columns are not included
                         pass
@@ -169,10 +259,10 @@ class Group(PysparkExtentionsTools):
         agg = sorted(agg, key = lambda x: x[0]*100000 + x[2]*1000 + x[1])
         agg = [el[3] for el in agg]
         agg = [element if isinstance(element, Column) else F.expr(element) for element in agg]
-        self.agg = agg
+        self.agg_exprs = agg
 
 
-    def single_aggregation_functions(self):
+    def single_aggregation_functions(self) -> List[str]:
         return (
             'max',
             'min',
@@ -188,78 +278,3 @@ class Group(PysparkExtentionsTools):
             'collect_set',
             'collect_list'
         )
-
-
-'''
-
-
-    df_agg = df.muCE(f'concat("{prefix_pivot_column}", {pivot_column}) as __pivot_col') if pivot_column else df
-    df_agg = df_agg.groupBy(*by)
-    df_agg = df_agg.pivot('__pivot_col') if pivot_column else df_agg
-    df_agg = df_agg.agg(*agg)
-    df_agg = df_agg.muNormalizeColumnNames()
-    df_agg = df_agg.withColumn('_group', F.lit(1))
-
-    if totals_by != []:
-        df_agg = (
-            df_agg
-            .selectExpr(f'cast({by[0]} as string) as {by[0]}', f'* except({by[0]})')
-            .unionByName(
-                df
-                .muGroup(
-                    by=totals_by,
-                    agg=agg,
-                    pivot_column=pivot_column,
-                    alias=alias,
-                    prefix_pivot_column=prefix_pivot_column,
-                    pivot_column_sort_by_measure=pivot_column_sort_by_measure,
-                )
-                .selectExpr(
-                    f'"{totals_label}" as {[col for col in by if col not in totals_by][0]}',
-                    '*'
-                )
-                .withColumn('_group', F.lit(2)),
-                allowMissingColumns=True
-            )
-        )
-
-    if totals:
-        df_agg = (
-            df_agg
-            .selectExpr(f'cast({by[0]} as string) as {by[0]}', f'* except({by[0]})')
-            .unionByName(
-                df
-                .muGroup(
-                    by=[],
-                    agg=agg,
-                    pivot_column=pivot_column,
-                    alias=alias,
-                    prefix_pivot_column=prefix_pivot_column,
-                    pivot_column_sort_by_measure=pivot_column_sort_by_measure,
-                )
-                .selectExpr(f'"{totals_label}" as {by[0]}', '*')
-                .withColumn('_group', F.lit(3)),
-                allowMissingColumns=True
-            )
-        )
-
-    df_agg = df_agg.orderBy(
-        # grand totals at bottom
-        F.expr('if(_group in (1,2), 1, 2)'),
-        # then each total group
-        *totals_by,
-        # totals at bottom of group
-        '_group',
-        # then sorting of the rows
-        *by,
-    )
-
-    return df_agg.drop('_group')
-
-DataFrame.muGroup = muGroup
-
-# o.muGroup([], ['sum(customer_demand_amt)'], totals=True).muShow(0)
-o.muGroup(['fascia_id', 'order_date'], ['sum(customer_demand_amt)'], totals=True, totals_by='fascia_id', totals_label="0").muShow(0)
-o.muGroup(['order_date'], ['sum(customer_demand_amt)'], pivot_column='fascia_id', totals=True).muShow(0)
-
-'''
