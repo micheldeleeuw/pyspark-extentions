@@ -33,7 +33,7 @@ class Group(PysparkExtentionsTools):
         self.keep_group_column = False
 
 
-    def pivot(self, column: str, prefix:str = '') -> Self:
+    def pivot(self, column: str, prefix: str = '') -> Self:
         self.pivot_column = column
         self.pivot_prefix = prefix
         self.columns_aggregable = [col for col in self.columns_aggregable if col != self.pivot_column]
@@ -79,7 +79,6 @@ class Group(PysparkExtentionsTools):
         :param kwargs:  holds the alias parameter
         :return: DataFrame with the aggregation
         '''
-
 
         # transform generic parameters to named local variables
         agg = list(kwargs['agg']) if 'agg' in kwargs.keys() else list(args)
@@ -128,28 +127,25 @@ class Group(PysparkExtentionsTools):
         if self.totals_indicator:
             self._totals()
 
-        print(1, F.expr('if(_group in (1,2), 1, 2)'))
-        print(2)
-            #     *self.totals_by,
-            #     '_group',
-            #     *self.by,
-
         # sort the result
         self.result =(
             self.result
-            # .orderBy(
-            #     # grand totals at bottom
-            #     F.expr('if(_group in (1,2), 1, 2)'),
-            #     # then each totals by group
-            #     *self.totals_by,
-            #     # by totals at bottom of by group
-            #     '_group',
-            #     # then sorting within the by group
-            #     *self.by,
-            # )
+            .orderBy(
+                # grand totals at bottom
+                F.expr('if(_group in (1,2), 1, 2)'),
+                # then each totals by group
+                *self.totals_by,
+                # by totals at bottom of by group
+                '_group',
+                # then sorting within the by group
+                *self.by,
+            )
         )
 
-        self.result = self.result.drop('_group') if not self.keep_group_column else self.result
+        if not self.keep_group_column:
+            self.result = self.result.drop('_group')
+        else:
+            self.result = self.result.withColumn('_seq', F.monotonically_increasing_id())
 
         return self.result
 
@@ -159,7 +155,7 @@ class Group(PysparkExtentionsTools):
         self._first_column_to_string()
 
         # group the original data, but without by
-        subtotals = Group(self.df, self.totals_by)
+        subtotals = Group(self.df, *self.totals_by)
 
         if self.pivot_column:
             subtotals = subtotals.pivot(self.pivot_column, self.pivot_prefix)

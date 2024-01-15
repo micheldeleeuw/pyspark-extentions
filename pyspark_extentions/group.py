@@ -85,7 +85,7 @@ class Group(PysparkExtentionsTools):
         alias = kwargs['alias'] if 'alias' in kwargs.keys() else False
 
         # default aggregate and scalar to list
-        if isinstance(agg, List) and isinstance(agg[0], List):
+        if isinstance(agg, List) and len(agg) > 0 and isinstance(agg[0], List):
             agg = agg[0]
 
         if not agg or agg == []:
