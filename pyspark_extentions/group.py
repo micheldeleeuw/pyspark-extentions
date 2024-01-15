@@ -33,7 +33,7 @@ class Group(PysparkExtentionsTools):
         self.keep_group_column = False
 
 
-    def pivot(self, column: str, prefix:str = '') -> Self:
+    def pivot(self, column: str, prefix: str = '') -> Self:
         self.pivot_column = column
         self.pivot_prefix = prefix
         self.columns_aggregable = [col for col in self.columns_aggregable if col != self.pivot_column]
@@ -79,7 +79,6 @@ class Group(PysparkExtentionsTools):
         :param kwargs:  holds the alias parameter
         :return: DataFrame with the aggregation
         '''
-
 
         # transform generic parameters to named local variables
         agg = list(kwargs['agg']) if 'agg' in kwargs.keys() else list(args)
