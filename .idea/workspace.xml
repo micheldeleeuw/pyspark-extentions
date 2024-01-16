@@ -7,6 +7,9 @@
     <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyspark_extentions/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extentions/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyspark_extentions/group.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extentions/group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/fixtures/test_set_1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/tests/fixtures/test_set_1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/pyspark_extentions/group.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/pyspark_extentions/group.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,25 +50,12 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests/pyspark_extentions" />
+      <recent name="$PROJECT_DIR$/pyspark_extentions" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for transpose.test_group">
-    <configuration name="Python tests for tests.pyspark_extentions.group.test_group" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="pyspark-extentions" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.pyspark_extentions.group.test_group&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for transpose.test_group" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Python tests in tests">
+    <configuration name="Python tests for dates_list_to_string.test_dates_list_to_string" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -75,14 +65,82 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;transpose.test_group&quot;" />
+      <option name="_new_target" value="&quot;dates_list_to_string.test_dates_list_to_string&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for group.test_group" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pyspark-extentions" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/pyspark_extentions" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;group.test_group&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for normalize_column_names.test_dates_list_to_string" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pyspark-extentions" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/pyspark_extentions" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;normalize_column_names.test_dates_list_to_string&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in pyspark_extentions" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pyspark-extentions" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../z_virtual_envs/pyspark-extentions/bin/Python" />
+      <option name="SDK_NAME" value="Python 3.9 (pyspark-extentions)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/pyspark_extentions&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in tests" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pyspark-extentions" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../z_virtual_envs/pyspark-extentions/bin/Python" />
+      <option name="SDK_NAME" value="Python 3.9 (pyspark-extentions)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python tests.Python tests for dates_list_to_string.test_dates_list_to_string" />
+      <item itemvalue="Python tests.Python tests for group.test_group" />
+      <item itemvalue="Python tests.Python tests for normalize_column_names.test_dates_list_to_string" />
+      <item itemvalue="Python tests.Python tests in pyspark_extentions" />
+      <item itemvalue="Python tests.Python tests in tests" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for transpose.test_group" />
-        <item itemvalue="Python tests.Python tests for tests.pyspark_extentions.group.test_group" />
+        <item itemvalue="Python tests.Python tests in tests" />
+        <item itemvalue="Python tests.Python tests in pyspark_extentions" />
+        <item itemvalue="Python tests.Python tests for dates_list_to_string.test_dates_list_to_string" />
+        <item itemvalue="Python tests.Python tests for group.test_group" />
+        <item itemvalue="Python tests.Python tests for normalize_column_names.test_dates_list_to_string" />
       </list>
     </recent_temporary>
   </component>

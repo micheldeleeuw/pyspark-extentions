@@ -15,11 +15,6 @@ class Group(PysparkExtentionsTools):
     def group(df: DataFrame, *by:List[str]) -> Self:
         return Group(df, *by)
 
-            # .pivot(column, prefix='', sort_by_measure=True),
-            # .totalsBy(label='Subtotal', type='sum')
-            # .totals(label='Total', type='sum')
-            # .agg(agg=None, alias=False)
-
 
     def __init__(self, df: DataFrame, *by: List[str]):
         # check and register some characteristics
@@ -83,9 +78,10 @@ class Group(PysparkExtentionsTools):
         # transform generic parameters to named local variables
         agg = list(kwargs['agg']) if 'agg' in kwargs.keys() else list(args)
         alias = kwargs['alias'] if 'alias' in kwargs.keys() else False
+        normalize_column_names = kwargs['normalize_column_names'] if 'normalize_column_names' in kwargs.keys() else True
 
         # default aggregate and scalar to list
-        if isinstance(agg, List) and isinstance(agg[0], List):
+        if isinstance(agg, List) and len(agg) > 0 and isinstance(agg[0], List):
             agg = agg[0]
 
         if not agg or agg == []:
@@ -105,6 +101,7 @@ class Group(PysparkExtentionsTools):
             alias = True
 
         self.alias = alias
+        self.normalize_aggregate_column_names = normalize_column_names
         self._build_aggregate()
 
         if self.pivot_column:
@@ -147,7 +144,17 @@ class Group(PysparkExtentionsTools):
         else:
             self.result = self.result.withColumn('_seq', F.monotonically_increasing_id())
 
+        if self.normalize_aggregate_column_names:
+            self._normalize_aggregate_column_names()
+
         return self.result
+
+
+    def _normalize_aggregate_column_names(self):
+        self.result = (
+            self.result
+            .eNormalizeColumnNames(columns=[col for col in self.result.columns if col not in self.by])
+        )
 
 
     def _totals_by(self):
