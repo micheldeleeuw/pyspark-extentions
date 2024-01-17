@@ -8,6 +8,7 @@ from typing import List
 
 log = logging.getLogger(__name__)
 
+
 def update_table(
         updates_df: DataFrame,
         target_table: str,
