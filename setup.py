@@ -1,4 +1,4 @@
-import os, sys
+import os
 
 from setuptools import setup, find_packages
 # from process import about
@@ -6,7 +6,8 @@ from setuptools import setup, find_packages
 
 # version = Version.from_git()
 
-in_databricks = sys.env.contains("DATABRICKS_RUNTIME_VERSION")
+in_databricks = os.getenv("DATABRICKS_RUNTIME_VERSION")
+
 setup(
     # name=about.__title__,
 
