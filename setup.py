@@ -1,4 +1,4 @@
-import os
+import os, sys
 
 from setuptools import setup, find_packages
 # from process import about
@@ -6,6 +6,7 @@ from setuptools import setup, find_packages
 
 # version = Version.from_git()
 
+in_databricks = sys.env.contains("DATABRICKS_RUNTIME_VERSION")
 setup(
     # name=about.__title__,
 
@@ -20,7 +21,7 @@ setup(
     install_requires=[
         'wheel>=0.42.0',
         # 'databricks-cli==0.18.0',
-        'pyspark==3.4.1',
+        *([] if in_databricks else ['pyspark==3.4.1']),
         # 'dunamai==1.19.0',
         # 'kafka-python==2.0.2',
     ],
