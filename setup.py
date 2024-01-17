@@ -20,9 +20,9 @@ setup(
     include_package_data=True,
 
     install_requires=[
-        'wheel>=0.42.0',
+        # 'wheel>=0.42.0',
         # 'databricks-cli==0.18.0',
-        *([] if in_databricks else ['pyspark==3.4.1']),
+        # *([] if in_databricks else ['pyspark==3.4.1']),
         # 'dunamai==1.19.0',
         # 'kafka-python==2.0.2',
     ],
