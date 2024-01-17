@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/pyspark-extentions.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pyspark-extentions.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/dates_list_to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extentions/dates_list_to_string.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/fixtures/test_set_1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/tests/fixtures/test_set_1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/pyspark_extentions/test_dates_list_to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/pyspark_extentions/test_dates_list_to_string.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/pyspark_extentions/test_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/pyspark_extentions/test_group.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
