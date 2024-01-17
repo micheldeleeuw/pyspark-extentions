@@ -11,7 +11,7 @@ typing_extensions
 # pytest-tldr==0.2.5
 # dunamai==1.19.0
 # luigi==3.0.3
-# delta-spark==2.4.0
+delta-spark==2.4.0
 # pytz==2023.3.post1
 # #./dependencies/datalaketools-1.0.0-py37-none-any.whl
 # ./dependencies/vent_utils-0.0.0+26.a378dd2-py3-none-any.whl

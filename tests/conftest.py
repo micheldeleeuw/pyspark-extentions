@@ -40,6 +40,7 @@ def test_set_1(spark):
         spark.read.format('csv')
         .option("timestampFormat", "yyyy-MM-dd HH:mm:ss.SSSSSS")
         .option('header', 'true')
+        .option('delimiter', ',')
         .schema('''
             order_id string,
             line_id string,

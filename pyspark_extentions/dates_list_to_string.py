@@ -3,10 +3,7 @@ from pyspark.sql import DataFrame
 
 log = logging.getLogger(__name__)
 
-def dates_list_to_string(
-        df: DataFrame,
-        column: str = None,
-) -> DataFrame:
+def dates_list_to_string(df: DataFrame, column: str = None) -> DataFrame:
 
     import pyspark.sql.functions as F
 
@@ -16,7 +13,6 @@ def dates_list_to_string(
         columns = [col for col, type in df.dtypes if type == 'array<date>']
 
     for col in columns:
-        print(col)
         df = (
             df
             .withColumn(col, F.expr(f'''
@@ -29,6 +25,12 @@ def dates_list_to_string(
                     ),
                     (s, x) -> 
                         case
+                            when x is null
+                            then struct(
+                                concat(s.result, ', null') as result, 
+                                x as period_start,
+                                x as period_end
+                            )
                             when s.period_start is null
                             then struct(
                                 s.result, 

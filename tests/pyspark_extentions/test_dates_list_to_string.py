@@ -1,7 +1,7 @@
 from tests.conftest import *
 import pyspark_extentions
 from pyspark.sql import Row
-from pyspark_extentions import *
+import pyspark.sql.functions as F
 
 def test_dates_list_to_string(spark, test_set_1):
 
@@ -19,3 +19,15 @@ def test_dates_list_to_string(spark, test_set_1):
         Row(customer_id='7233', order_dates='2024-01-02')
     ]
 
+    dates_transform2 = (
+        test_set_1
+        # .withColumn('order_date', F.expr('if(customer_id = "5321", to_date(null), order_date)'))
+        .eGroup()
+        .agg('collect_list(order_date) as order_dates')
+        .withColumn('order_dates', F.expr('transform(order_dates, x -> if(x = "2024-01-02", to_date(null), x))'))
+        .eDatesListToString('order_dates')
+    )
+
+    assert (dates_transform2.collect()) == [
+        Row(order_dates='null, 2024-01-01, 2024-01-03, 2024-01-05 to 2024-01-06')
+    ]

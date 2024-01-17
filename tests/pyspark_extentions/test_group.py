@@ -25,27 +25,11 @@ def test_group(test_set_1):
     assert grouped_2.columns == ['order_date', 'count']
     assert grouped_2.first()[0] == datetime.date(2024, 1, 1)
 
-
     grouped_3 = (
         test_set_1
         .withColumn('non standard', F.lit(1))
         .eGroup('non standard')
         .agg('max(sales_amount)')
     )
-
     assert grouped_3.columns == ['non standard', 'max_sales_amount']
 
-    # (
-    #     test_set_1
-    #     .withColumn('non standard', F.lit(1))
-    #     # .eGroup()
-    #     # .eGroup('order_date')
-    #     .eGroup('order_date', 'customer_id')
-    #     # .pivot('customer_id', prefix='customer=')
-    #     .totalsBy('order_date', label='')
-    #     .totals(keep_group_column=True)
-    #     # .agg()
-    #     # .agg(F.expr('sum(1) as bla'), alias=False)
-    #     .agg('sum', F.expr('sum(1) as bla'), alias=False)
-    #     .show(truncate=False)
-    # )
