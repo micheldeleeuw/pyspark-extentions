@@ -18,7 +18,7 @@ setup(
 
     packages=find_packages(exclude=['tests', 'tests.*', 'images']),
     include_package_data=True,
-
+    package_data={'': ['config.ini']},
     install_requires=[
         # 'wheel>=0.42.0',
         # 'databricks-cli==0.18.0',
