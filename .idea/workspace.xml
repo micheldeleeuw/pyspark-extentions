@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extensions/methods/group.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extensions/methods/to_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/to_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/methods/test_dates_list_to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_dates_list_to_string.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/methods/test_normalize_column_names.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_normalize_column_names.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/methods/test_printable.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_printable.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/methods/test_round.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_round.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/methods/test_transpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_transpose.py" afterDir="false" />
-    </list>
+    <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

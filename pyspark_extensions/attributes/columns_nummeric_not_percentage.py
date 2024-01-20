@@ -1,8 +1,6 @@
 import logging
 from typing import List
 from pyspark.sql import DataFrame
-from config import ENVARS
-import re
 
 log = logging.getLogger(__name__)
 
