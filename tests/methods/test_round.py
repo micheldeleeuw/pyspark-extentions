@@ -1,8 +1,7 @@
 from tests.conftest import *
-import pyspark_extentions
+import pyspark_extensions
 import pyspark.sql.functions as F
-from pyspark_extentions import *
-from pyspark.sql import Row
+from pyspark_extensions import *
 
 def test_transpose(spark, test_set_1):
 

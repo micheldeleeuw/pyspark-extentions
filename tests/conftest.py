@@ -43,7 +43,7 @@ def test_set_1(spark):
         .option('delimiter', ',')
         .schema('''
             order_id string,
-            line_id string,
+            line_id int,
             order_date date,
             order_timestamp timestamp,
             customer_id string,

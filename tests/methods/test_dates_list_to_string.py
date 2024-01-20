@@ -1,5 +1,5 @@
 from tests.conftest import *
-import pyspark_extentions
+import pyspark_extensions
 from pyspark.sql import Row
 import pyspark.sql.functions as F
 

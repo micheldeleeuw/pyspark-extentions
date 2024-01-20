@@ -5,11 +5,10 @@ from pyspark.sql.column import Column
 from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
 
-from .pyspark_extentions_tools import PysparkExtentionsTools
 
 log = logging.getLogger(__name__)
 
-class Group(PysparkExtentionsTools):
+class Group():
 
     @staticmethod
     def group(df: DataFrame, *by:List[str]) -> Self:
@@ -19,9 +18,9 @@ class Group(PysparkExtentionsTools):
     def __init__(self, df: DataFrame, *by: List[str]):
         # check and register some characteristics
         self.df = df
-        self.add_dataframe_properties_to_self(df)
-        self.by = self.validate_columns_parameters(by)
-        self.columns_aggregable = [col for col in self.columns if col not in self.by]
+        self.by = [] if not by else by
+        self.by = [self.by] if isinstance(self.by, str) else self.by
+        self.columns_aggregable = [col for col in self.df.columns if col not in self.by]
         self.pivot_column = None
         self.totals_by = []
         self.totals_indicator = False
@@ -231,7 +230,7 @@ class Group(PysparkExtentionsTools):
                 for j, col in enumerate(self.columns_aggregable):
                     result_expression = None
 
-                    if col in self.columns_nummeric and ag_el == 'avg_null':
+                    if col in self.df.eColumnsNummeric and ag_el == 'avg_null':
                         result_expression = f'avg(coalesce(`{col}`, 0))'
                     elif ag_el == 'count_distinct':
                         result_expression = f'count(distinct(`{col}`))'
@@ -239,7 +238,7 @@ class Group(PysparkExtentionsTools):
                         result_expression = f'sum(case when `{col}` is null then 1 else 0 end)'
                     elif ag_el == 'count_not_null':
                         result_expression = f'sum(case when `{col}` is not null then 1 else 0 end)'
-                    elif col in self.columns_nummeric or ag_el in (
+                    elif col in self.eColumnsNummeric or ag_el in (
                             'max', 'min', 'count', 'first', 'collect_set', 'collect_list'):
                         result_expression = f'{ag_el}(`{col}`)'
                     else:
@@ -252,10 +251,10 @@ class Group(PysparkExtentionsTools):
 
             # 2. SQL expression (string), add sorted_columns() and columns() functionality.
             elif isinstance(ag_el, str):
-                ag_el = f'"{", ".join(sorted(self.columns))}" as columns' if ag_el == 'sorted_columns()' else ag_el
-                ag_el = ag_el.replace('sorted_columns()', f'"{", ".join(sorted(self.columns))}"')
-                ag_el = f'"{", ".join(self.columns)}" as columns' if ag_el == 'columns()' else ag_el
-                ag_el = ag_el.replace('columns()', f'"{", ".join(self.columns)}"')
+                ag_el = f'"{", ".join(sorted(self.df.columns))}" as columns' if ag_el == 'sorted_columns()' else ag_el
+                ag_el = ag_el.replace('sorted_columns()', f'"{", ".join(sorted(self.df.columns))}"')
+                ag_el = f'"{", ".join(self.df.columns)}" as columns' if ag_el == 'columns()' else ag_el
+                ag_el = ag_el.replace('columns()', f'"{", ".join(self.df.columns)}"')
                 agg.append([1, i, 0, ag_el])
 
             # 3. Column expression

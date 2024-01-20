@@ -1,7 +1,7 @@
 from tests.conftest import *
-import pyspark_extentions
+import pyspark_extensions
 import pyspark.sql.functions as F
-from pyspark_extentions import *
+from pyspark_extensions import *
 
 def test_dates_list_to_string(spark, test_set_1):
 

@@ -57,7 +57,6 @@ def transpose(
     if first_col_gives_column_name:
         tran = tran.filter('column_id != "0"')
 
-    print('add_data_type', add_data_type)
     if not add_data_type:
         tran = tran.drop('data_type')
 
