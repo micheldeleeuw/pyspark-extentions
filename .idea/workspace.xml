@@ -55,7 +55,7 @@
       <recent name="$PROJECT_DIR$/pyspark_extensions/extensions" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for methods.test_update_table.test_update_table">
+  <component name="RunManager" selected="Python tests.Python tests in tests">
     <configuration name="Python tests for methods.test_group.test_group" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,8 +135,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for methods.test_update_table.test_update_table" />
         <item itemvalue="Python tests.Python tests in tests" />
+        <item itemvalue="Python tests.Python tests for methods.test_update_table.test_update_table" />
         <item itemvalue="Python tests.Python tests for methods.test_to_list.test_to_list" />
         <item itemvalue="Python tests.Python tests for methods.test_group.test_group" />
         <item itemvalue="Python tests.Python tests in columns.py" />
