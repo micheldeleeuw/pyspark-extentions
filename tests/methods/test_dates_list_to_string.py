@@ -3,7 +3,7 @@ import pyspark_extensions
 from pyspark.sql import Row
 import pyspark.sql.functions as F
 
-def test_dates_list_to_string(spark, test_set_1):
+def test_dates_list_to_string(test_set_1):
 
     dates_transform = (
         test_set_1

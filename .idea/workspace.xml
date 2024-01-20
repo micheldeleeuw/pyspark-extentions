@@ -5,24 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/pyspark-extentions.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pyspark-extentions.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/dates_list_to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/dates_list_to_string.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/group.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/normalize_column_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/normalize_column_names.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/pyspark_extentions_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/pyspark_extentions_tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/round.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/round.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/to_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/to_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/transpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/transpose.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyspark_extentions/update_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/update_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/pyspark_extentions/test_dates_list_to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_dates_list_to_string.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/pyspark_extentions/test_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/pyspark_extentions/test_normalize_column_names.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_normalize_column_names.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/pyspark_extentions/test_round.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_round.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/pyspark_extentions/test_transpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_transpose.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyspark_extensions/methods/group.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyspark_extensions/methods/to_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/to_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/methods/test_dates_list_to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_dates_list_to_string.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/methods/test_normalize_column_names.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_normalize_column_names.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/methods/test_printable.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_printable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/methods/test_round.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_round.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/methods/test_transpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_transpose.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +43,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/micheldeleeuw/dev/pyspark-extentions/pyspark_extensions/attributes",
+    "last_opened_file_path": "/Users/micheldeleeuw/dev/pyspark-extentions/tests/methods",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -62,11 +52,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/methods" />
       <recent name="$PROJECT_DIR$/pyspark_extensions/attributes" />
       <recent name="$PROJECT_DIR$/tests/attributes" />
       <recent name="$PROJECT_DIR$/tests/pyspark_extentions" />
       <recent name="$PROJECT_DIR$/pyspark_extentions" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -74,8 +64,8 @@
       <recent name="$PROJECT_DIR$/pyspark_extensions/extensions" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for attributes.columns.test_columns_percentage">
-    <configuration name="Python tests for attributes.columns" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Python tests for methods.test_update_table.test_update_table">
+    <configuration name="Python tests for methods.test_group.test_group" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -85,11 +75,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;attributes.columns&quot;" />
+      <option name="_new_target" value="&quot;methods.test_group.test_group&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for attributes.columns.test_columns_percentage" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for methods.test_to_list.test_to_list" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -99,11 +89,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;attributes.columns.test_columns_percentage&quot;" />
+      <option name="_new_target" value="&quot;methods.test_to_list.test_to_list&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for pyspark_extentions.test_dates_list_to_string.test_dates_list_to_string" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for methods.test_update_table.test_update_table" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -113,11 +103,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;pyspark_extentions.test_dates_list_to_string.test_dates_list_to_string&quot;" />
+      <option name="_new_target" value="&quot;methods.test_update_table.test_update_table&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for pyspark_extentions.test_printable.test_printable" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in columns.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -127,11 +117,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;pyspark_extentions.test_printable.test_printable&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/attributes/columns.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for pyspark_extentions.test_round.test_transpose" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in tests" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -141,24 +131,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;pyspark_extentions.test_round.test_transpose&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python tests.Python tests for attributes.columns_nummeric.test_transpose" />
-      <item itemvalue="Python tests.Python tests for attributes.columns.test_columns_percentage" />
-      <item itemvalue="Python tests.Python tests for pyspark_extentions.test_dates_list_to_string.test_dates_list_to_string" />
-      <item itemvalue="Python tests.Python tests for pyspark_extentions.test_printable.test_printable" />
-      <item itemvalue="Python tests.Python tests for pyspark_extentions.test_round.test_transpose" />
+      <item itemvalue="Python tests.Python tests for methods.test_group.test_group" />
+      <item itemvalue="Python tests.Python tests for methods.test_to_list.test_to_list" />
+      <item itemvalue="Python tests.Python tests for methods.test_update_table.test_update_table" />
+      <item itemvalue="Python tests.Python tests in columns.py" />
+      <item itemvalue="Python tests.Python tests in tests" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for attributes.columns.test_columns_percentage" />
-        <item itemvalue="Python tests.Python tests for attributes.columns_nummeric.test_transpose" />
-        <item itemvalue="Python tests.Python tests for pyspark_extentions.test_printable.test_printable" />
-        <item itemvalue="Python tests.Python tests for pyspark_extentions.test_round.test_transpose" />
-        <item itemvalue="Python tests.Python tests for pyspark_extentions.test_dates_list_to_string.test_dates_list_to_string" />
+        <item itemvalue="Python tests.Python tests for methods.test_update_table.test_update_table" />
+        <item itemvalue="Python tests.Python tests in tests" />
+        <item itemvalue="Python tests.Python tests for methods.test_to_list.test_to_list" />
+        <item itemvalue="Python tests.Python tests for methods.test_group.test_group" />
+        <item itemvalue="Python tests.Python tests in columns.py" />
       </list>
     </recent_temporary>
   </component>

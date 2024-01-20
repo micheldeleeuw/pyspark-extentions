@@ -238,7 +238,7 @@ class Group():
                         result_expression = f'sum(case when `{col}` is null then 1 else 0 end)'
                     elif ag_el == 'count_not_null':
                         result_expression = f'sum(case when `{col}` is not null then 1 else 0 end)'
-                    elif col in self.eColumnsNummeric or ag_el in (
+                    elif col in self.df.eColumnsNummeric or ag_el in (
                             'max', 'min', 'count', 'first', 'collect_set', 'collect_list'):
                         result_expression = f'{ag_el}(`{col}`)'
                     else:

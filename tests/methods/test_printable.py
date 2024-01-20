@@ -3,7 +3,7 @@ import pyspark_extensions
 import pyspark.sql.functions as F
 from pyspark_extensions import *
 
-def test_printable(spark, test_set_1):
+def test_printable(test_set_1):
 
     data = (
         test_set_1

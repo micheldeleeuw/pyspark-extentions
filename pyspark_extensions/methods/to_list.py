@@ -16,6 +16,9 @@ def to_list(df: DataFrame, type: str = 'C'):
         return [row[0] for row in df.select(col).collect()]
 
     else:
-        return [tuple(row.dataCol.asDict().values())
-                for row in df.select(F.struct([f'`{col}`' for col in df.columns]).alias("dataCol")).collect()]
+        return [
+            tuple(row.dataCol.asDict().values())
+            for row in df.select(F.struct(
+                [f'`{col}`' for col in df.columns]
+            ).alias("dataCol")).collect()]
 
