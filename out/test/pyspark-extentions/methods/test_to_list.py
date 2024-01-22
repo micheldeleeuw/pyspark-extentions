@@ -1,5 +1,6 @@
 from tests.conftest import *
 import pyspark_extensions
+import pyspark.sql.functions as F
 
 def test_to_list(test_set_1):
     data = (
@@ -16,10 +17,4 @@ def test_to_list(test_set_1):
         ('5321', 20019, 115.09),
         ('7232', 70098, 609.16),
         ('7233', 60063, 230.16)
-    ]
-    assert data.eToList('D', columns=['customer_id', 'sales_amount']) == [
-        ('5001', 576.97),
-        ('5321', 115.09),
-        ('7232', 609.16),
-        ('7233', 230.16)
     ]

@@ -1,13 +1,9 @@
 from pyspark.sql import DataFrame
-from typing import List
 import pyspark.sql.functions as F
 
-def to_list(df: DataFrame, type: str = 'C', columns: List[str] = None):
+def to_list(df: DataFrame, type: str = 'C'):
 
     assert type in ('C', 'R', 'D'), 'Type must be C (first column), R (first row) or D (total dataframe).'
-
-    columns = df.eValidateColumns(columns)
-    df = df.select(*columns)
 
     if type == 'R':
         return list(df.limit(1)
