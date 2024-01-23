@@ -98,9 +98,6 @@ def to_string(
                     if width and isinstance(row_data, List) and isinstance(row_data[col], str):
                         data[row][col] = '\n'.join(wrap(data[row][col], width))
 
-
-        print(data)
-
         # Print the table and add it to the result
         result += tabulate(
             data,
