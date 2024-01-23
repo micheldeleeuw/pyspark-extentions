@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/methods/test_to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_to_string.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyspark_extensions/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/config.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +58,7 @@
       <recent name="$PROJECT_DIR$/pyspark_extensions/extensions" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for methods.test_to_string.test_to_string">
+  <component name="RunManager" selected="Python tests.Python tests in tests">
     <configuration name="Python tests for methods.test_printable.test_printable" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -138,8 +138,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for methods.test_to_string.test_to_string" />
         <item itemvalue="Python tests.Python tests in tests" />
+        <item itemvalue="Python tests.Python tests for methods.test_to_string.test_to_string" />
         <item itemvalue="Python tests.Python tests for methods.test_show.test_show" />
         <item itemvalue="Python tests.Python tests for methods.test_printable.test_printable" />
         <item itemvalue="Python tests.Python tests for methods.test_update_table.test_update_table" />
