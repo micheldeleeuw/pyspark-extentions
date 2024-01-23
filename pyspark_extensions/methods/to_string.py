@@ -101,15 +101,17 @@ def to_string(
                         data[row][col] = '\n'.join(wrap(data[row][col], width))
 
         # Print the table and add it to the result
-        result += tabulate(
-            data,
-            headers=[col for col in df_selection.columns if col != '_group'],
-            colalign=colalign,
-            showindex=show_index,
-            tablefmt=format,
-        ) + '\n'
-
-        result = result + '\n' if by else result
+        if data:
+            result += tabulate(
+                data,
+                headers=[col for col in df_selection.columns if col != '_group'],
+                colalign=colalign,
+                showindex=show_index,
+                tablefmt=format,
+            ) + '\n'
+            result = result + '\n' if by else result
+        else:
+            result += 'No data'
 
     df.unpersist()
     return result.rstrip()

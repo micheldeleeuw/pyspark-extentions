@@ -78,7 +78,7 @@ class Group():
         # transform generic parameters to named local variables
         agg = list(kwargs['agg']) if 'agg' in kwargs.keys() else list(args)
         alias = kwargs['alias'] if 'alias' in kwargs.keys() else False
-        normalize_column_names = kwargs['normalize_column_names'] if 'normalize_column_names' in kwargs.keys() else True
+        normalize_column_names = kwargs['normalize_column_names'] if 'normalize_column_names' in kwargs.keys() else False
 
         # default aggregate and scalar to list
         if isinstance(agg, List) and len(agg) > 0 and isinstance(agg[0], List):
@@ -141,8 +141,6 @@ class Group():
 
         if not self.keep_group_column:
             self.result = self.result.drop('_group')
-        # else:
-        #     self.result = self.result.withColumn('_seq', F.monotonically_increasing_id())
 
         if self.normalize_aggregate_column_names:
             self._normalize_aggregate_column_names()
@@ -155,6 +153,15 @@ class Group():
             self.result
             .eNormalizeColumnNames(columns=[col for col in self.result.columns if col not in self.by])
         )
+
+    @staticmethod
+    def _normalize_name(name: str):
+        name = name.lower().translate({
+            32:95, 33:95, 34:95, 35:95, 36:95, 37:95, 38:95, 39:95, 40:95, 41:95, 42:95, 43:95, 44:95, 45:95, 46:95, 47:95
+        })
+        name = name[1:] if name.startswith('_') else name
+        name = name[0:-1] if name.endswith('_') else name
+        return name
 
 
     def _totals_by(self):
@@ -256,6 +263,10 @@ class Group():
                 ag_el = ag_el.replace('sorted_columns()', f'"{", ".join(sorted(self.df.columns))}"')
                 ag_el = f'"{", ".join(self.df.columns)}" as columns' if ag_el == 'columns()' else ag_el
                 ag_el = ag_el.replace('columns()', f'"{", ".join(self.df.columns)}"')
+
+                if ag_el.find(' as ') == -1:
+                    ag_el += f' as `{self._normalize_name(ag_el)}`'
+
                 agg.append([1, i, 0, ag_el])
 
             # 3. Column expression
