@@ -169,7 +169,7 @@ class Group():
 
         subtotals = (
             subtotals
-            .agg(agg=self.agg_exprs, alias=self.alias)
+            .agg(agg=self.agg_exprs, alias=self.alias, normalize_column_names=False)
             .selectExpr(f'"{self.totals_by_label}" as {[col for col in self.by if col not in self.totals_by][0]}', '*')
             .withColumn('_group', F.lit(2))
         )
@@ -189,7 +189,7 @@ class Group():
 
         totals = (
             totals
-            .agg(agg=self.agg_exprs, alias=self.alias)
+            .agg(agg=self.agg_exprs, alias=self.alias, normalize_column_names=False)
             .selectExpr(f'"{self.totals_label}" as {self.by[0]}', '*')
             .withColumn('_group', F.lit(3))
         )
