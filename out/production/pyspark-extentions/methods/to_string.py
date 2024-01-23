@@ -2,7 +2,6 @@ from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
 from typing import Union, List
 from tabulate import tabulate
-from textwrap import wrap
 
 def to_string(
         df: DataFrame,
@@ -12,11 +11,7 @@ def to_string(
         percentage_precision: int = None,
         k: bool = False,
         k_label = '',
-        title: str = None,
         truncate: Union[bool, int] = False,
-        show_index: bool = False,
-        format: str = None, # see https://pypi.org/project/tabulate/ for possible values
-        columns_widths: List[Union[None, int]] = None,
     ):
 
     if isinstance(truncate, bool) and truncate:
@@ -34,7 +29,7 @@ def to_string(
 
     # determine the column alignment
     colalign = []
-    for col in [col for col in columns if col != '_group']:
+    for col in columns:
         if col in df.eColumnsNummeric + df.eColumnsInteger:
             colalign.append('right')
         else:
@@ -49,9 +44,8 @@ def to_string(
     )
 
     # create the result by looping through the by values and make the
-    # per by vqlue.
-    result = title + '\n' if title else ''
-
+    # per by vqlue
+    result = ''
     for by_value in by_values:
         if by:
             title = f'{by}: {by_value}'
@@ -64,55 +58,37 @@ def to_string(
             .limit(n)
         )
 
-        # Get the data in a 2-dimensional array
-        data = [
-            list(row.asDict().values())
-            for row in df_selection.collect()
-        ]
-
+        data = df_selection.eToList('D')
         # add separation lines before the total columns
+
         if '_group' in df_selection.columns:
+            # columns = [col for col in df_selection.columns if col not in ('_group', '_seq')]
             group_column_number = df_selection.columns.index('_group')
+            seq_column_number = df_selection.columns.index('_seq')
             _data = data
-            records = len(data)
+            records = data.co
             data = []
-            for i, row in enumerate(_data):
+            for row in _data:
                 if row[group_column_number] in ['2', '3']:
-                    if format in ['simple', 'rst'] or format == None:
-                        # "\001" is the tabulate internal code for separator line
-                        data.append("\001")
+                    # "\001" is the tabulate internal code for separator line
+                    data.append("\001")
                     # the totals line
-                    del row[group_column_number]
                     data.append(row)
-                    # an empty line, except for the last total
-                    if i < records-1:
-                        data.append([])
+                    # an empty line
+                    data.append([])
                 else:
-                    del row[group_column_number]
                     data.append(row)
-
-        # Apply column widths. Default tabulate functionality has a bug
-        if columns_widths:
-            for row, row_data in enumerate(data):
-                for col, width in enumerate(columns_widths):
-                    if width and isinstance(row_data, List) and isinstance(row_data[col], str):
-                        data[row][col] = '\n'.join(wrap(data[row][col], width))
-
-
-        print(data)
 
         # Print the table and add it to the result
         result += tabulate(
             data,
-            headers=[col for col in df_selection.columns if col != '_group'],
-            colalign=colalign,
-            showindex=show_index,
-            tablefmt=format,
+            headers=df_selection.columns,
+            colalign=colalign
         ) + '\n'
 
         result = result + '\n' if by else result
 
     df.unpersist()
-    return result.rstrip()
+    return result
 
 

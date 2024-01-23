@@ -1,7 +1,5 @@
 from tests.conftest import *
 import pyspark_extensions
-import pyspark.sql.functions as F
-from pyspark_extensions import *
 
 def test_round(test_set_1):
 

@@ -22,16 +22,8 @@ def test_to_string(test_set_1):
         .totals(keep_group_column=True)
         .sum()
     )
-
-    format=None
-
-    assert isinstance(data1.eToString(format=format, title='\nShow 1:'), str)
-    assert isinstance(data2.eToString(format=format, title='\nShow 2:'), str)
-    assert isinstance(data2.eToString(
-        by='customer_id', format=format, title='\nShow 2:'), str)
-    assert isinstance(data3.eToString(format=format, title='\nShow 4:'), str)
-    assert isinstance(data3.eToString(
-        columns_widths=[None, None, 10, None], format='plain', title='\nShow 5:'),
-        str
-    )
-
+    # data.ePrintable().eShow(by='customer_id')
+    data1.eShow()
+    data2.eShow()
+    data2.eShow(by='customer_id')
+    data3.eShow()

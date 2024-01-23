@@ -13,9 +13,9 @@ class Printable():
             precision: int = None,
             percentage_precision: int = None,
             k: bool = False,
-            k_label = '',
+            k_label: str = '',
             columns: Union[str, List[str]] = None,
-            align_right: bool = True,
+            align_right: bool = False,
         ) -> DataFrame:
 
         if k:

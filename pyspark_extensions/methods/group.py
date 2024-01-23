@@ -141,8 +141,8 @@ class Group():
 
         if not self.keep_group_column:
             self.result = self.result.drop('_group')
-        else:
-            self.result = self.result.withColumn('_seq', F.monotonically_increasing_id())
+        # else:
+        #     self.result = self.result.withColumn('_seq', F.monotonically_increasing_id())
 
         if self.normalize_aggregate_column_names:
             self._normalize_aggregate_column_names()
