@@ -55,7 +55,9 @@ def to_string(
     for by_value in by_values:
         if by:
             title = f'{by}: {by_value}'
-            result += f'{title}\n' + '-' * len(title) + '\n'
+            result += f'{title}\n'
+            if not format or format.find('outline') == -1:
+                result += '-' * len(title) + '\n'
 
         df_selection = (
             df

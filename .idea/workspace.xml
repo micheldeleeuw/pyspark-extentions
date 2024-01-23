@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyspark_extensions/methods/to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyspark_extensions/methods/to_string.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/methods/test_to_string.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/methods/test_to_string.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,16 +35,16 @@
     <option name="autoscrollFromSource" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/micheldeleeuw/dev/pyspark-extentions/tests/methods",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.customizations"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/micheldeleeuw/dev/pyspark-extentions/tests/methods&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests/methods" />
@@ -58,7 +60,7 @@
       <recent name="$PROJECT_DIR$/pyspark_extensions/extensions" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in tests">
+  <component name="RunManager" selected="Python tests.Python tests for methods.test_to_string.test_to_string">
     <configuration name="Python tests for methods.test_printable.test_printable" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -138,8 +140,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests in tests" />
         <item itemvalue="Python tests.Python tests for methods.test_to_string.test_to_string" />
+        <item itemvalue="Python tests.Python tests in tests" />
         <item itemvalue="Python tests.Python tests for methods.test_show.test_show" />
         <item itemvalue="Python tests.Python tests for methods.test_printable.test_printable" />
         <item itemvalue="Python tests.Python tests for methods.test_update_table.test_update_table" />

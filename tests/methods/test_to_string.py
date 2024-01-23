@@ -13,6 +13,7 @@ def test_to_string(test_set_1):
         test_set_1
         .eGroup('customer_id', 'line_id', 'article_description')
         .totalsBy('customer_id', keep_group_column=True)
+        .totals(keep_group_column=True)
         .sum()
     )
 
@@ -35,3 +36,5 @@ def test_to_string(test_set_1):
         str
     )
 
+    # data2.eShow(
+    #     title='\nShow 2:', format='simple_outline')
