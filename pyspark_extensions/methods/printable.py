@@ -39,7 +39,7 @@ class Printable():
         for column in df.columns:
             if column not in columns:
                 columns_transforms.append(f'`{column}`')
-            if column in columns_percentage:
+            elif column in columns_percentage:
                 columns_transforms.append(
                     Printable._transform_column(column, percentage_precision)
                 )
