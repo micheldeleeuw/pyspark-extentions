@@ -102,6 +102,7 @@ def to_string(
 
         # Print the table and add it to the result
         if data:
+            print(data)
             result += tabulate(
                 data,
                 headers=[col for col in df_selection.columns if col != '_group'],
