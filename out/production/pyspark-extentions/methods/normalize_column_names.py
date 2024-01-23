@@ -9,9 +9,7 @@ def normalize_column_names(
         columns: List[str] = None
     ):
 
-    columns = df.columns if not columns else columns
-    columns = [columns] if isinstance(columns, str) else columns
-
+    columns = df.eValidateColumns(columns)
     new_columns = []
     for col in df.columns:
         if col in columns:

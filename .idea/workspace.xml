@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="" />
+    <list default="true" id="f4aa3278-cb9a-4e4b-a7ae-daa241563bda" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,10 +46,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests/methods" />
+      <recent name="$PROJECT_DIR$/pyspark_extensions/methods" />
       <recent name="$PROJECT_DIR$/pyspark_extensions/attributes" />
       <recent name="$PROJECT_DIR$/tests/attributes" />
       <recent name="$PROJECT_DIR$/tests/pyspark_extentions" />
-      <recent name="$PROJECT_DIR$/pyspark_extentions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pyspark_extensions" />
@@ -57,7 +59,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python tests.Python tests in tests">
-    <configuration name="Python tests for methods.test_group.test_group" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for methods.test_printable.test_printable" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -67,11 +69,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;methods.test_group.test_group&quot;" />
+      <option name="_new_target" value="&quot;methods.test_printable.test_printable&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for methods.test_to_list.test_to_list" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for methods.test_show.test_show" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -81,7 +83,21 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;methods.test_to_list.test_to_list&quot;" />
+      <option name="_new_target" value="&quot;methods.test_show.test_show&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for methods.test_to_string.test_to_string" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pyspark-extentions" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;methods.test_to_string.test_to_string&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -99,20 +115,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in columns.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="pyspark-extentions" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/attributes/columns.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Python tests in tests" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pyspark-extentions" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,19 +130,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python tests.Python tests for methods.test_group.test_group" />
-      <item itemvalue="Python tests.Python tests for methods.test_to_list.test_to_list" />
+      <item itemvalue="Python tests.Python tests for methods.test_printable.test_printable" />
+      <item itemvalue="Python tests.Python tests for methods.test_show.test_show" />
+      <item itemvalue="Python tests.Python tests for methods.test_to_string.test_to_string" />
       <item itemvalue="Python tests.Python tests for methods.test_update_table.test_update_table" />
-      <item itemvalue="Python tests.Python tests in columns.py" />
       <item itemvalue="Python tests.Python tests in tests" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Python tests in tests" />
+        <item itemvalue="Python tests.Python tests for methods.test_to_string.test_to_string" />
+        <item itemvalue="Python tests.Python tests for methods.test_show.test_show" />
+        <item itemvalue="Python tests.Python tests for methods.test_printable.test_printable" />
         <item itemvalue="Python tests.Python tests for methods.test_update_table.test_update_table" />
-        <item itemvalue="Python tests.Python tests for methods.test_to_list.test_to_list" />
-        <item itemvalue="Python tests.Python tests for methods.test_group.test_group" />
-        <item itemvalue="Python tests.Python tests in columns.py" />
       </list>
     </recent_temporary>
   </component>

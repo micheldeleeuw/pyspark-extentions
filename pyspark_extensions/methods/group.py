@@ -4,6 +4,7 @@ from typing_extensions import Self
 from pyspark.sql.column import Column
 from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
+from .validate_columns import validate_columns
 
 
 log = logging.getLogger(__name__)
@@ -19,7 +20,7 @@ class Group():
         # check and register some characteristics
         self.df = df
         self.by = [] if not by else by
-        self.by = [self.by] if isinstance(self.by, str) else self.by
+        self.by = validate_columns(df, self.by)
         self.columns_aggregable = [col for col in self.df.columns if col not in self.by]
         self.pivot_column = None
         self.totals_by = []
@@ -46,7 +47,7 @@ class Group():
         elif not by:
             self.totals_by = [self.by[0]]
         else:
-            self.totals_by = self.validate_columns_parameters(by)
+            self.totals_by = validate_columns(self.df, by)
 
         self.totals_by_label = label
         self.keep_group_column = keep_group_column
@@ -140,8 +141,8 @@ class Group():
 
         if not self.keep_group_column:
             self.result = self.result.drop('_group')
-        else:
-            self.result = self.result.withColumn('_seq', F.monotonically_increasing_id())
+        # else:
+        #     self.result = self.result.withColumn('_seq', F.monotonically_increasing_id())
 
         if self.normalize_aggregate_column_names:
             self._normalize_aggregate_column_names()
@@ -266,11 +267,63 @@ class Group():
         agg = [element if isinstance(element, Column) else F.expr(element) for element in agg]
         self.agg_exprs = agg
 
+    ## define shortcuts for commonly used agg usages
+    def count(self) -> DataFrame:
+        return self.agg()
+
+
+    def min(self) -> DataFrame:
+        return self.agg('min')
+
+
+    def max(self) -> DataFrame:
+        return self.agg('max')
+
+
+    def sum(self) -> DataFrame:
+        return self.agg('sum')
+
+
+    def avg(self) -> DataFrame:
+        return self.agg('avg')
+
+
+    def avg_null(self) -> DataFrame:
+        return self.agg('avg_null')
+
+
+    def count_distinct(self) -> DataFrame:
+        return self.agg('count_distinct')
+
+
+    def count_null(self) -> DataFrame:
+        return self.agg('count_null')
+
+
+    def count_not_null(self) -> DataFrame:
+        return self.agg('count_not_null')
+
+
+    def first(self) -> DataFrame:
+        return self.agg('first')
+
+
+    def last(self) -> DataFrame:
+        return self.agg('last')
+
+
+    def collect_set(self) -> DataFrame:
+        return self.agg('collect_set')
+
+
+    def collect_list(self) -> DataFrame:
+        return self.agg('collect_list')
+
 
     def single_aggregation_functions(self) -> List[str]:
         return (
-            'max',
             'min',
+            'max',
             'sum',
             'avg',
             'avg_null',
