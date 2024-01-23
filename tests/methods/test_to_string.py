@@ -24,6 +24,12 @@ def test_to_string(test_set_1):
         .sum()
     )
 
+    data4 = (
+        test_set_1
+        .eGroup()
+        .agg('max')
+    )
+
     format=None
 
     assert isinstance(data1.eToString(format=format, title='\nShow 1:'), str)
@@ -35,6 +41,4 @@ def test_to_string(test_set_1):
         columns_widths=[None, None, 10, None], format='plain', title='\nShow 5:'),
         str
     )
-
-    # data2.eShow(
-    #     title='\nShow 2:', format='simple_outline')
+    assert isinstance(data4.eToString(title='\nShow 6:', format='simple_outline'), str)
