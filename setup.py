@@ -20,7 +20,6 @@ setup(
     include_package_data=True,
     package_data={'': ['config.ini']},
     install_requires=[
-        'tabulate==0.9.0',
         # 'wheel>=0.42.0',
         # 'databricks-cli==0.18.0',
         # *([] if in_databricks else ['pyspark==3.4.1']),

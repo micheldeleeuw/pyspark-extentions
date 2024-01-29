@@ -1,5 +1,6 @@
 from tests.conftest import *
 import pyspark_extensions
+from pyspark_extensions.methods.to_string import ToString
 
 def test_to_string(test_set_1):
 
@@ -30,17 +31,9 @@ def test_to_string(test_set_1):
         .agg('max')
     )
 
-    format=None
-
-    # assert isinstance(data1.eToString(format=format, title='\nShow 1:'), str)
-    # assert isinstance(data2.eToString(format=format, title='\nShow 2:'), str)
-    # assert isinstance(data2.eToString(
-    #     by='customer_id', format=format, title='\nShow 2:'), str)
-    # assert isinstance(data3.eToString(format=format, title='\nShow 4:'), str)
-    # assert isinstance(data3.eToString(
-    #     columns_widths=[None, None, 10, None], format='plain', title='\nShow 5:'),
-    #     str
-    # )
-    # assert isinstance(data4.eToString(title='\nShow 6:', format='simple_outline'), str)
-
-    data2.eShow()
+    assert isinstance(data1.eToString(table_format='default', title='Title'), str)
+    assert isinstance(data2.eToString(table_format='compact'), str)
+    assert isinstance(data2.eToString(by='customer_id'), str)
+    assert isinstance(data3.eToString(), str)
+    assert isinstance(data3.eToString(columns_widths=[None, None, 10, None]), str)
+    assert isinstance(data4.eToString(), str)

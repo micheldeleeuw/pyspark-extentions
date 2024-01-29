@@ -8,7 +8,7 @@ from .printable import Printable
 from .round import round
 from .show import show
 from .to_list import to_list
-from .to_string import to_string
+from .to_string import ToString
 from .transpose import transpose
 from .update_table import update_table
 from .validate_columns import validate_columns
@@ -20,7 +20,7 @@ DataFrame.ePrintable = Printable.printable
 DataFrame.eRound = round
 DataFrame.eShow = show
 DataFrame.eToList = to_list
-DataFrame.eToString = to_string
+DataFrame.eToString = ToString.to_string
 DataFrame.eTranspose = transpose
 DataFrame.eUpdateTable = update_table
 DataFrame.eValidateColumns = validate_columns
